@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # KEYWORDS
-USERNAME="mutuki"
-XAUTHKEY="40a3b1d793bff21541c9c24fc36454bcbb832672"
-SERVERNAME="wiki.kuropug.com"
+USERNAME="username"
+XAUTHKEY="authkey"
+SERVERNAME="servername"
 echo "Dozens dynamic IP setter version 0.3b"
 
 # Get Global IP address
