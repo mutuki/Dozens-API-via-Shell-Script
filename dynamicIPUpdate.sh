@@ -3,7 +3,9 @@
 # KEYWORDS
 USERNAME="username"
 XAUTHKEY="authkey"
+DOMAINNAME="domainname"
 SERVERNAME="servername"
+
 echo "Dozens dynamic IP setter version 0.3b"
 
 # Get Global IP address
@@ -17,8 +19,9 @@ echo "Your key is : $MYKEY"$'\n'
 
 # Get wikiserver id
 echo "Serching $SERVERNAME record..."
-LINENUMBER=$(echo $(expr $(curl -s http://dozens.jp/api/record/kuropug.com.json -H X-Auth-Token:$MYKEY | tr "," "\n" | grep -n $SERVERNAME | sed 's/[a-z":.]//g') - 1)"p")
-RECORDID=$(curl -s http://dozens.jp/api/record/kuropug.com.json -H X-Auth-Token:$MYKEY | tr "," "\n" | sed -n $LINENUMBER | sed -e 's/[a-z"{}:.]//g')
+LINENUMBER=$(echo $(expr $(curl -s http://dozens.jp/api/record/$DOMAINNAME.json -H X-Auth-Token:$MYKEY | tr "," "\n" | grep -n $SERVERNAME | sed 's/[a-z":.]//g') - 1)"p")
+
+RECORDID=$(curl -s http://dozens.jp/api/record/$DOMAINNAME.json -H X-Auth-Token:$MYKEY | tr "," "\n" | sed -n $LINENUMBER | sed -e 's/[a-z,",{,},:,.,\[]//g')
 echo "$SERVERNAME record id is $RECORDID""."$'\n'
 
 # Set IP Address
